@@ -1,5 +1,3 @@
-from ast import If
-
 from django.http import Http404
 from django.shortcuts import render
 from util.recipes.factory import make_recipe
@@ -23,12 +21,11 @@ def category(request, category_id):
     ).order_by('-id')
 
     if not recipes:
-        raise Http404('Not found')
+        raise Http404('Not found 🥲')
 
     return render(request, 'recipes/pages/category.html', context={
         'recipes': recipes,
-        'title_cat': f'{recipes.first().category_name}  - Category | '
-    })
+        'title': f'{recipes.first().category.name} - Category | '})
 
 
 def recipe(request, id):
